@@ -2,14 +2,9 @@ contact_data = [['joe@email.com', '123 Main st.', '555-123-4567'], ['pawel.swiec
 contacts = {"Joe Smith" => {}, "Pawel Swiecki" => {}}
 data_labels = [:email, :address, :phone]
 
-contacts["Joe Smith"][:email] = contact_data[0][0]
-
-contact_data.flatten!
-
-contacts.each_key do |person|
+contacts.each_with_index do |(person, hash), index|
   data_labels.each do |label|
-    value = contact_data.shift
-    contacts[person][label] = value
+    hash[label] = contact_data[index].shift
   end
 end
 
